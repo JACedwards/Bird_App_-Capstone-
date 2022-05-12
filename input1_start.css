@@ -1,0 +1,41 @@
+/*This is how to comment in CSS*  The can be added inline too 
+Can be used in .css file as well as inline in html file*/
+
+body {
+    background-color: rgb(187,192,199);
+     margin: 30px;
+     background-image: url("https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500K");
+   
+     background-repeat: no-repeat;
+     background-size: 300px 197px;
+     background-position: top right;
+     background-attachment: fixed;
+    
+       
+     
+     
+       
+     
+   }
+   
+   p {
+     color: blue;
+   }
+   
+   label {
+     color:green;
+   }
+   
+   fieldset{
+     border-color: red;
+     background-color: rgba(2,59,150,0.15);
+     width:300px;
+     max-width:300px;
+     
+   }
+   
+   #field-color {
+     color: black;
+   }
+   
+   
