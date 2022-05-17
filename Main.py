@@ -78,7 +78,7 @@ class Users:
 
 
 class Lists(Users):
-    def __init__(self, life_time, annual, backyard, bird, year, count_lifetime, count_annual, count_backyard , list_lifetime, list_annual, list_backyard, ):
+    def __init__(self, life_time, annual, backyard, bird, year, count_lifetime, count_annual, count_backyard , list_lifetime, list_annual, list_backyard):
         self.life_time = life_time
         self.annual = annual
         self.backyard = backyard
@@ -90,6 +90,7 @@ class Lists(Users):
         self.list_lifetime = list_lifetime
         self.list_annual = list_annual
         self.list_backyard = list_backyard
+        self.count_backyard_list = count_backyard_list
 
     def list_choice(self):
         self.count_lifetime = 0
@@ -98,9 +99,7 @@ class Lists(Users):
         self.list_lifetime = [] 
         self.list_annual = [] 
         self.list_backyard = [] 
-
-        flag_list = True
-       
+    
         while True:
             print("List choices: ")
             print("\t [1] My backyard list")
@@ -111,64 +110,135 @@ class Lists(Users):
             # keys would include: name for outing (invite), location, date, list of birds
             choice_of_list = input(f"Which of these lists would you like to do [use number]?  ")
 
-            if choice_of_list == 1:
-                self.bird = input("Which bird would you like to add to your backyard list?  ")
-                self.list_backyard.append(self.bird)
-                self.count_backyard = self.count_backyard + 1
-                show_backyard_list = input("Would you like to see your current backyard list [y/n]? ")
-                if show_backyard_list == "y" or "Y" or "yes" or "Yes":
-                    print("Here is your current backyard list: ")
-                    for b in self.list_backyard:
-                        print(f"\t {b.title()}")
-                elif show_backyard_list == "n" or "N" or "yes" or "No":
-                    continue  
+            if choice_of_list == '1':
+                self.list_backyard
+            elif choice_of_list == '2':
+                self.list_annual
+            elif choice_of_list == '3':
+                self.list_lifetime
+            elif choice_of_list == '4':
+                break
 
-##This is just a copy and paste of the original function that I had started in which all 3 list choices were in a single function (but had only completed the backyard part).  I an splitting into 3:  back yard, annual, and life time functions below is just a copy and past of original combined lists in case I screw up shift to individual functions.  Once I am done with backyard list function, however, I should be able to do a lot of copy, paste, replace for annual and lifetime:
 
-    #have tested this function in a separate file in test folder.  Need to copy and paste back here, and then add in necessary "self." prefixes. May be a few other tweaks too.
+#????? can you help me test this one????#
     def list_backyard(self):
         self.count_backyard_list = 0
         self.list_backyard_list = [] 
 
-        flag_list = True
-        #why won't flag_list turn light blue (be recognized as defined?)
-        #above or at end of while loop?
         while True:
-            print("List choices: ")
+            print("\nList choices: ")
             print("\t [1] Add bird to backyard list")
             print("\t [2] See complete current backyard list")
             print("\t [3] See total count for current backyard list")
             print("\t [4] Finished adding to backyard list for now")
-             # might want to add one-time "outing" dictionary
-            # keys would include: name for outing (invite), location, date, list of birds
-            choice_of_backyard_list = input(f"Which of these lists would you like to do [use number]?  ")
+                # might want to add functionality of this function auto-checking if backyard bird entry is already in annual or lifetime list, and adding if not.
+            choice_of_backyard_list = input(f"Use number above to indicate what you'd like to do?  ")
 
-            if choice_of_backyard_list == 1:
-                self.bird_backyard = input("Which bird would you like to add to your backyard list?  ")
-                self.list_backyard_list.append(self.bird)
-                self.count_backyard = self.count_backyard + 1
+            if choice_of_backyard_list == '1':
+                self.bird_backyard = input("\nWhich bird would you like to add to your backyard list?  ")
+                print(f"{self.bird_backyard.title} has been added to your list!")
+                self.list_backyard_list.append(self.bird_backyard)
+                self.count_backyard_list = self.count_backyard_list + 1
                 continue
-            elif choice_of_backyard_list == 2:    
-                print("Here is your current backyard list: ")
+            elif choice_of_backyard_list == '2':    
+                print("\nHere is your current backyard list: ")
                 for b in self.list_backyard_list:
-                    print(f"\t {b.title()}")
+                    print(f"\n\t {b.title()}")
                 continue
-            elif choice_of_backyard_list == 3:
-                print(f"You currently have {self.count_backyard_list} in your backyard list.")
-            elif choice_of_backyard_list != 1 or 2 or 3 or 4:
-                print("Try again, you have not yet entered a valid number.")
-            elif choice_of_backyard_list == 4:
-                print("Thank you for adding to your backyard list. You will now be returned to the main menu.")
-                flag_list = False
+            elif choice_of_backyard_list == '3':
+                print(f"\nThis is the number of birds you currently have in your backyard list: {self.count_backyard_list}.")
+            
+            elif choice_of_backyard_list == '4':
+                print("\nThank you for adding to your backyard list. You will now be returned to the main menu.")
                 break
+            elif choice_of_backyard_list != '1' or '2' or '3' or '4':
+                print("n\Try again, you have not yet entered a valid number.")
+                continue
 
-#End copy and paste of backup of 3 lists combined into one function (although had only complete backyard part when copied)
+#????? How can I reset annual list automatically on December 31 and archive each year's list?
+
+#???? When you are checking against the existence of a bird in an existing list, how do you handle mispellings?
+
+#??? Similarly, is there a way to present to the user a list of similarly spelled words that they can check/choose from that do exist?
+
+    def list_annual(self):
+        self.count_annual_list = 0
+        self.list_annual_list = [] 
+
+        while True:
+            print("\nList choices: ")
+            print("\t [1] Add bird to annual list")
+            print("\t [2] See complete current annual list")
+            print("\t [3] See total count for current annual list")
+            print("\t [4] Finished adding to annual list for now")
+                # might want to add functionality of this function auto-checking if backyard bird entry is already in annual or lifetime list, and adding if not.
+            choice_of_annual_list = input(f"Use number above to indicate what you'd like to do?  ")
+
+            if choice_of_annual_list == '1':
+                self.bird_annual = input("\nWhich bird would you like to add to your annual list?  ")
+                print(f"{self.bird_annual.title} has been added to your list!")
+                self.list_annual_list.append(self.bird_annual)
+                self.count_annual_list = self.count_annual_list + 1
+                continue
+            elif choice_of_annual_list == '2':    
+                print("\nHere is your current annual list: ")
+                for b in self.list_annual_list:
+                    print(f"\n\t {b.title()}")
+                continue
+            elif choice_of_annual_list == '3':
+                print(f"\nThis is the number of birds you currently have in your annual list: {self.count_annual_list}.")
+            
+            elif choice_of_annual_list == '4':
+                print("\nThank you for adding to your annual list. You will now be returned to the main menu.")
+                break
+            elif choice_of_annual_list != '1' or '2' or '3' or '4':
+                print("n\Try again, you have not yet entered a valid number.")
+                continue
+
+    def list_lifetime(self):
+        self.count_lifetime_list = 0
+        self.list_lifetime_list = [] 
+
+        while True:
+            print("\nList choices: ")
+            print("\t [1] Add bird to lifetime list")
+            print("\t [2] See complete current lifetime list")
+            print("\t [3] See total count for current lifetime list")
+            print("\t [4] Finished adding to lifetime list for now")
+                # might want to add functionality of this function auto-checking if backyard bird entry is already in annual or lifetime list, and adding if not.
+            choice_of_lifetime_list = input(f"Use number above to indicate what you'd like to do?  ")
+
+            if choice_of_lifetime_list == '1':
+                self.bird_lifetime = input("\nWhich bird would you like to add to your lifetime list?  ")
+                print(f"{self.bird_lifetime.title} has been added to your list!")
+                self.list_lifetime_list.append(self.bird_lifetime)
+                self.count_lifetime_list = self.count_lifetime_list + 1
+                continue
+            elif choice_of_lifetime_list == '2':    
+                print("\nHere is your current lifetime list: ")
+                for b in self.list_lifetime_list:
+                    print(f"\n\t {b.title()}")
+                continue
+            elif choice_of_lifetime_list == '3':
+                print(f"\nThis is the number of birds you currently have in your annual list: {self.count_lifetime_list}.")
+            
+            elif choice_of_lifetime_list == '4':
+                print("\nThank you for adding to your lifetimerd list. You will now be returned to the main menu.")
+                break
+            elif choice_of_lifetime_list != '1' or '2' or '3' or '4':
+                print("n\Try again, you have not yet entered a valid number.")
+                continue
+    
+
 
 class Run():
     """Runs program"""
 
     def __init__(self):
-    #why does "def" below say, unexpected indentation?
+    
+#??? do I have to define variables after init statement above?
+
+#???Why does below "def" indicate an indention problem?
     
     def run_program(self):
 
@@ -192,42 +262,16 @@ class Run():
             else:
                 continue
 user_1 = Users()
-# why does Run say undefined?
+
+#???? why does Run say undefined?
 run = Run(user_1)
-#I assum run_program below will take care of itself when I fix run_program above?
+
+#????? Are there ways to run individual functions without running entire program (to check for errors)
+
 run.run_program()
 
 
-
-
-
-    
-
-            # <> Start here:  
-            # stest list_choice function
-            # complete while true loop.
-            #  should be able to do a lot of copy and past from back yard if section to annual and lifetime list sections
-
-
-
-
-
-
-
-
-
-# Ready to test sign -up module:
-    # should accept input
-    # print self_user profile
-
-
-
-
-
-
-
-
-
+# Can I ingegrate below into one of the classes above?
 
 def citing(state, county, bird, date):
     """Report citing by state, county, date"""
