@@ -109,7 +109,7 @@ class Lists(Users):
             print("\t [4] Finished adding birds for now")
              # might want to add one-time "outing" dictionary
             # keys would include: name for outing (invite), location, date, list of birds
-            choice_of_list = input(f"Which of these would you like to do [use number]?  ")
+            choice_of_list = input(f"Which of these lists would you like to do [use number]?  ")
 
             if choice_of_list == 1:
                 self.bird = input("Which bird would you like to add to your backyard list?  ")
@@ -122,6 +122,86 @@ class Lists(Users):
                         print(f"\t {b.title()}")
                 elif show_backyard_list == "n" or "N" or "yes" or "No":
                     continue  
+
+##This is just a copy and paste of the original function that I had started in which all 3 list choices were in a single function (but had only completed the backyard part).  I an splitting into 3:  back yard, annual, and life time functions below is just a copy and past of original combined lists in case I screw up shift to individual functions.  Once I am done with backyard list function, however, I should be able to do a lot of copy, paste, replace for annual and lifetime:
+
+    #have tested this function in a separate file in test folder.  Need to copy and paste back here, and then add in necessary "self." prefixes. May be a few other tweaks too.
+    def list_backyard(self):
+        self.count_backyard_list = 0
+        self.list_backyard_list = [] 
+
+        flag_list = True
+        #why won't flag_list turn light blue (be recognized as defined?)
+        #above or at end of while loop?
+        while True:
+            print("List choices: ")
+            print("\t [1] Add bird to backyard list")
+            print("\t [2] See complete current backyard list")
+            print("\t [3] See total count for current backyard list")
+            print("\t [4] Finished adding to backyard list for now")
+             # might want to add one-time "outing" dictionary
+            # keys would include: name for outing (invite), location, date, list of birds
+            choice_of_backyard_list = input(f"Which of these lists would you like to do [use number]?  ")
+
+            if choice_of_backyard_list == 1:
+                self.bird_backyard = input("Which bird would you like to add to your backyard list?  ")
+                self.list_backyard_list.append(self.bird)
+                self.count_backyard = self.count_backyard + 1
+                continue
+            elif choice_of_backyard_list == 2:    
+                print("Here is your current backyard list: ")
+                for b in self.list_backyard_list:
+                    print(f"\t {b.title()}")
+                continue
+            elif choice_of_backyard_list == 3:
+                print(f"You currently have {self.count_backyard_list} in your backyard list.")
+            elif choice_of_backyard_list != 1 or 2 or 3 or 4:
+                print("Try again, you have not yet entered a valid number.")
+            elif choice_of_backyard_list == 4:
+                print("Thank you for adding to your backyard list. You will now be returned to the main menu.")
+                flag_list = False
+                break
+
+#End copy and paste of backup of 3 lists combined into one function (although had only complete backyard part when copied)
+
+class Run():
+    """Runs program"""
+
+    def __init__(self):
+    #why does "def" below say, unexpected indentation?
+    
+    def run_program(self):
+
+        while True:
+            print(f"\nWhat would you like to do ?")
+            print("[1]: Sign up")
+            # Should probably split lists into 
+            #separate lists at some point
+            print("[2]: Add to backyard, annual, or lifetime list")
+            # print("[3]: Add to annual list")
+            # print("[4]: Add to lifetime list")
+            choice = input("Choose a number to indicate what you'd like to do:  ")
+            if choice == '1':
+                self.sign_up()
+            elif choice == '2':
+                self.list_choice() 
+            
+            elif choice != '1' or choice != '2' or choice != '3' or choice != '4' or choice != '5' or choice != '6':
+                print("\nYou have not entered a valid number. \nPlease try again.")
+                continue
+            else:
+                continue
+user_1 = Users()
+# why does Run say undefined?
+run = Run(user_1)
+#I assum run_program below will take care of itself when I fix run_program above?
+run.run_program()
+
+
+
+
+
+    
 
             # <> Start here:  
             # stest list_choice function
