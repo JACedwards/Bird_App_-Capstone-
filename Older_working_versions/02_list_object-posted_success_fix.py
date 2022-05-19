@@ -18,8 +18,6 @@
 # Need search module
     # For bird brain group data
     # and for Cornell site data (ebirds)
-#Additional Functionality for the Future:
-    #"Blog" section like Facebook posts for keeping in touch with other users and "following" them.  (https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 
 # Classes:
     # Users
@@ -38,7 +36,7 @@ from turtle import back
 
 
 class Users():
-    def __init__(self, first_name = '', last_name = '', user_name = '', password = '', password_confirm = '', email = '',  state = '', county = '', profile_pic = '', user_profile = '', users_database = '', signup_para = ''):
+    def __init__(self, first_name = '', last_name = '', user_name = '', password = '', password_confirm = '', email = '',  state = '', county = '', profile_pic = '', user_profile = '', users_database = ''):
         self.first_name = first_name
         self.last_name = last_name
         self.user_name = user_name
@@ -50,7 +48,6 @@ class Users():
         self.user_profile = user_profile
         self.password_confirm = password_confirm
         self.users_database = users_database
-        self.signup_para = signup_para
 
     def signup(self):
         self.user_profile = {}
@@ -65,7 +62,7 @@ class Users():
         self.county = input("What county do you live in? ")
         self.profile_pic = input("Optional: Upload a profile picture for yourself here:  ")
 
-        self.user_profile = Users({self.user_name : {
+        self.profile_pic = Users({self.user_name : {
             "First name: " : self.first_name, 
             "Last name: " : self.last_name, 
             "Username: " : self.user_name, 
@@ -81,7 +78,7 @@ class Users():
 
 
 class Lists(Users):
-    def __init__(self, life_time ='', annual='', backyard='', bird='', year='', count_lifetime='', count_annual='', count_backyard ='', count_backyard_list='', list_annual_list=[], count_annual_list = 0):
+    def __init__(self, life_time ='', annual='', backyard='', bird='', year='', count_lifetime='', count_annual='', count_backyard ='', count_backyard_list=''):
         self.life_time = life_time
         self.annual = annual
         self.backyard = backyard
@@ -91,8 +88,6 @@ class Lists(Users):
         self.count_annual = count_annual
         self.count_backyard = count_backyard
         self.count_backyard_list = count_backyard_list
-        self.list_annual_list = list_annual_list
-        self.count_annual_list = count_annual_list
 
 
 
@@ -110,27 +105,17 @@ class Lists(Users):
             print("\t [4] Finished adding to backyard list for now")
                 # might want to add functionality of this function auto-checking if backyard bird entry is already in annual or lifetime list, and adding if not.
             choice_of_backyard_list = input(f"Use number above to indicate what you'd like to do?  ")
+##--<>start here
+##-****line 116 is returning an object rather than the name of the bird****
+##--*****might be easier to look for a fix inside the test version since it is more contained.
+##--****easy work around would be to change that print statement in 114 to something generic, that doesn't include name of bird
+
 
             if choice_of_backyard_list == '1':
                 bird_backyard = input("\nWhich bird would you like to add to your backyard list?  ").title()
                 print(f"{bird_backyard.title()} has been added to your list!")
                 self.list_backyard_list.append(bird_backyard)
                 self.count_backyard_list = self.count_backyard_list + 1
-
-    #Added check and auto add to anual and lifetime lists (if not already present)
-
-                if bird_backyard not in self.list_annual_list:
-                    print(f"\tThis spelling of {bird_backyard.title()} was not found in your annual list. \n\tSo, {bird_backyard.title()} has also been added to your annual list.")
-                    self.list_annual_list.append(bird_backyard)
-                    self.count_annual_list = self.count_annual_list + 1
-                else:
-                    continue
-
-    # end of annual / lifetime check
-    #need to do similar add to backyard for lifetime list/count
-    #Then add lifetime check to annual
-
-
                 continue
             elif choice_of_backyard_list == '2':    
                 print("\nHere is your current backyard list: ")
@@ -259,7 +244,7 @@ class Run():
 
 #???Why does below "def" indicate an indention problem?
     
-    def run_program(self, the_list_class,):
+    def run_program(self, the_list_class):
 
         while True:
             print(f"\nWhat would you like to do ?")
