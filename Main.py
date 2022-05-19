@@ -113,7 +113,7 @@ class Lists(Users):
 
             if choice_of_backyard_list == '1':
                 bird_backyard = input("\nWhich bird would you like to add to your backyard list?  ").title()
-                print(f"{bird_backyard} has been added to your list!")
+                print(f"{bird_backyard.title()} has been added to your list!")
                 self.list_backyard_list.append(bird_backyard)
                 self.count_backyard_list = self.count_backyard_list + 1
                 continue
@@ -154,9 +154,9 @@ class Lists(Users):
             choice_of_annual_list = input(f"Use number above to indicate what you'd like to do?  ")
 
             if choice_of_annual_list == '1':
-                self.bird_annual = input("\nWhich bird would you like to add to your annual list?  ")
-                print(f"{self.bird_annual.title} has been added to your list!")
-                self.list_annual_list.append(self.bird_annual)
+                bird_annual = input("\nWhich bird would you like to add to your annual list?  ")
+                print(f"{bird_annual.title()} has been added to your list!")
+                self.list_annual_list.append(bird_annual)
                 self.count_annual_list = self.count_annual_list + 1
                 continue
             elif choice_of_annual_list == '2':    
@@ -188,9 +188,9 @@ class Lists(Users):
             choice_of_lifetime_list = input(f"Use number above to indicate what you'd like to do?  ")
 
             if choice_of_lifetime_list == '1':
-                self.bird_lifetime = input("\nWhich bird would you like to add to your lifetime list?  ")
-                print(f"{self.bird_lifetime.title} has been added to your list!")
-                self.list_lifetime_list.append(self.bird_lifetime)
+                bird_lifetime = input("\nWhich bird would you like to add to your lifetime list?  ")
+                print(f"{bird_lifetime.title} has been added to your list!")
+                self.list_lifetime_list.append(bird_lifetime)
                 self.count_lifetime_list = self.count_lifetime_list + 1
                 continue
             elif choice_of_lifetime_list == '2':    
@@ -256,7 +256,7 @@ class Run():
             # print("[4]: Add to lifetime list")
             choice = input("Choose a number to indicate what you'd like to do:  ")
             if choice == '1':
-                self.sign_up()
+                signup_para.signup()
             elif choice == '2':
                 the_list_class.list_choice() 
             
@@ -267,10 +267,7 @@ class Run():
                 continue
 user_1 = Users()  
 
-#???? why does Run say undefined?
 run = Run(user_1)
-
-#????? Are there ways to run individual functions without running entire program (to check for errors)
 
 myList = Lists(user_1)
 
@@ -279,32 +276,34 @@ run.run_program(myList)
 
 # Can I ingegrate below into one of the classes above?
 
-def citing(state, county, bird, date):
-    """Report citing by state, county, date"""
-    state_county = f"{county.title()} County, {state.title()}"
-    report = f"The following bird was seen on {date}, in {state_county}: {bird.title()}."
+# def citing(state, county, bird, date):
+#     """Report citing by state, county, date"""
+#     state_county = f"{county.title()} County, {state.title()}"
+#     report = f"The following bird was seen on {date}, in {state_county}: {bird.title()}."
     
-    return(report)
+#     return(report)
 
-while True:
-    print("\nPlease enter the following data:")
-    print('(enter "q" at any time to quit)')
+# while True:
+#     print("\nPlease enter the following data:")
+#     print('(enter "q" at any time to quit)')
 
-    state_a = input("What state did you see the in bird? ")
-    if state_a == 'q':
-        break
+#     state_a = input("What state did you see the in bird? ")
+#     if state_a == 'q':
+#         break
 
-    county_a = input("What county did you see the bird in? ")
-    if county_a == 'q':
-        break
+#     county_a = input("What county did you see the bird in? ")
+#     if county_a == 'q':
+#         break
 
-    bird_a = input("What kind of bird did you see? ")
-    if bird_a == 'q':
-        break
+#     bird_a = input("What kind of bird did you see? ")
+#     if bird_a == 'q':
+#         break
 
-    date_a = input("On which date did you see the bird? ")
-    if county_a == 'q':
-        break
+#     date_a = input("On which date did you see the bird? ")
+#     if county_a == 'q':
+#         break
 
-    citing1 = citing(state_a, county_a, bird_a, date_a)
-    print(citing1)
+#     citing1 = citing(state_a, county_a, bird_a, date_a)
+#     print(citing1)
+
+
