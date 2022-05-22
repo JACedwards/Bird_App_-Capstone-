@@ -81,7 +81,7 @@ class Users():
 
 
 class Lists(Users):
-    def __init__(self, life_time ='', annual='', backyard='', bird='', year='', count_lifetime='', count_annual='', count_backyard ='', count_backyard_list='', list_annual_list=[], count_annual_list = 0):
+    def __init__(self, life_time ='', annual='', backyard='', bird='', year='', count_lifetime='', count_annual='', count_backyard ='', count_backyard_list='', list_annual_list=[], count_annual_list = 0, list_lifetime_list = ''):
         self.life_time = life_time
         self.annual = annual
         self.backyard = backyard
@@ -93,6 +93,7 @@ class Lists(Users):
         self.count_backyard_list = count_backyard_list
         self.list_annual_list = list_annual_list
         self.count_annual_list = count_annual_list
+        self.list_lifetime_list = list_lifetime_list
 
 
 
@@ -118,6 +119,7 @@ class Lists(Users):
                 self.count_backyard_list = self.count_backyard_list + 1
 
     #Added check and auto add to anual and lifetime lists (if not already present)
+    #Need to add add to lifetime list if adding to annual list too.
 
                 if bird_backyard not in self.list_annual_list:
                     print(f"\tThis spelling of {bird_backyard.title()} was not found in your annual list. \n\tSo, {bird_backyard.title()} has also been added to your annual list.")
@@ -126,12 +128,14 @@ class Lists(Users):
                 else:
                     continue
 
-    # end of annual / lifetime check
-    #need to do similar add to backyard for lifetime list/count
-    #Then add lifetime check to annual
+                if bird_backyard not in self.list_lifetime_list:
+                    print(f"\tThis spelling of {bird_backyard.title()} was not found in your lifetime list. \n\tSo, {bird_backyard.title()} has also been added to your lifetime list.")
+                    self.list_lifetime_list.append(bird_backyard)
+                    self.count_lifetime_list = self.count_lifetime_list + 1
+                else:
+                    continue
 
-
-                continue
+                # continue
             elif choice_of_backyard_list == '2':    
                 print("\nHere is your current backyard list: ")
                 for b in self.list_backyard_list:
@@ -173,7 +177,14 @@ class Lists(Users):
                 print(f"{bird_annual.title()} has been added to your list!")
                 self.list_annual_list.append(bird_annual)
                 self.count_annual_list = self.count_annual_list + 1
-                continue
+
+                if bird_annual not in self.list_lifetime_list:
+                    print(f"\tThis spelling of {bird_annual.title()} was not found in your lifetime list. \n\tSo, {bird_annual.title()} has also been added to your lifetime list.")
+                    self.list_lifetime_list.append(bird_annual)
+                    self.count_lifetime_list = self.count_lifetime_list + 1
+                else:
+                    continue
+           
             elif choice_of_annual_list == '2':    
                 print("\nHere is your current annual list: ")
                 for b in self.list_annual_list:
@@ -207,6 +218,7 @@ class Lists(Users):
                 print(f"{bird_lifetime.title} has been added to your list!")
                 self.list_lifetime_list.append(bird_lifetime)
                 self.count_lifetime_list = self.count_lifetime_list + 1
+
                 continue
             elif choice_of_lifetime_list == '2':    
                 print("\nHere is your current lifetime list: ")
@@ -255,11 +267,8 @@ class Run():
     def __init__(self, user):
         self.user = user
     
-#??? do I have to define variables after init statement above?
-
-#???Why does below "def" indicate an indention problem?
-    
-    def run_program(self, the_list_class,):
+    def run_program(self, the_list_class):
+        
 
         while True:
             print(f"\nWhat would you like to do ?")
