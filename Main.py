@@ -261,7 +261,7 @@ class Lists(Users):
     
 
 
-class Run():
+class Run(Users):
     """Runs program"""
 
     def __init__(self, user):
@@ -280,7 +280,7 @@ class Run():
             # print("[4]: Add to lifetime list")
             choice = input("Choose a number to indicate what you'd like to do:  ")
             if choice == '1':
-                signup_para.signup()
+                the_list_class.signup()
             elif choice == '2':
                 the_list_class.list_choice() 
             
